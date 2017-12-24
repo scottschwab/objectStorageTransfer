@@ -1,16 +1,14 @@
+import pytest
 from mock import patch
-from pytest import fixture
 from time import sleep
 from os import environ
 from canary import Canary, AwsConfigException
 
-TEST_KEY = "AKIAI2YFWQBRNUJLEPZQ"
-TEST_SECRET = "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"
-
 TEST_BUCKET = 'objectcanary'
 TEST_FILENAME = "testFile_{}".format(environ.get('HOSTNAME', 'unknown'))
 
-
+TEST_KEY = "xxxxxxx"
+TEST_SECRET = "yyyyyyy"
 
 class BucketType:
     """Mocking the S3 Bucket object"""
@@ -25,12 +23,15 @@ class S3:
         return BucketType()
 
 
-@fixture(scope='module')
+@pytest.fixture(scope='module')
 def env():
     # this logic runs before the testing start
 
     old_key = environ.get('AWS_ACCESS_KEY_ID',None)
     old_secret = environ.get('AWS_SECRET_ACCESS_KEY', None)
+    del environ['AWS_ACCESS_KEY_ID']
+    del environ['AWS_SECRET_ACCESS_KEY']
+
     yield "env"   # env is the argument, needed to be passed to test that need the setup / teardown
     # this logic runs after the testing finish
     if old_key is not None:
