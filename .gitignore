@@ -18,3 +18,10 @@ include
 lib
 local
 share
+.cache
+source/.cache
+source/.idea
+
+# support file
+access_key.sh
+
