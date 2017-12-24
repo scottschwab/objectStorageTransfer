@@ -21,6 +21,7 @@ share
 .cache
 source/.cache
 source/.idea
+source/.coverage
 
 # support file
 access_key.sh
