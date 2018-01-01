@@ -10,13 +10,17 @@ TEST_FILENAME = "testFile_{}".format(environ.get('HOSTNAME', 'unknown'))
 TEST_KEY = "xxxxxxx"
 TEST_SECRET = "yyyyyyy"
 
+
 class BucketType:
     """Mocking the S3 Bucket object"""
+    @staticmethod
     def upload_file(self, x, y):
         sleep(1)
 
+    @staticmethod
     def download_file(self, x, y):
         sleep(2)
+
 
 class S3:
     def Bucket(self,x):
@@ -29,8 +33,10 @@ def env():
 
     old_key = environ.get('AWS_ACCESS_KEY_ID',None)
     old_secret = environ.get('AWS_SECRET_ACCESS_KEY', None)
-    del environ['AWS_ACCESS_KEY_ID']
-    del environ['AWS_SECRET_ACCESS_KEY']
+    if 'AWS_ACCESS_KEY_ID' in environ:
+        del environ['AWS_ACCESS_KEY_ID']
+    if 'AWS_SECRET_ACCESS_KEY' in environ:
+        del environ['AWS_SECRET_ACCESS_KEY']
 
     yield "env"   # env is the argument, needed to be passed to test that need the setup / teardown
     # this logic runs after the testing finish
