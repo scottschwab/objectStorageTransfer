@@ -1,14 +1,20 @@
 # objectStorageTransfer
-transferring a block to an from a object storage
+Transferring a file to and from a object storage, S3 by default.
 
-built using boto3 for AWS access and pytest for testing, all on python 2.7
+This is built
+built using boto3 for AWS access and pytest for testing,
+all on python 2.7.
 
 
-Testing:
-  to run unit test:
-  # pytest source
+## Testing:
+To run unit test
+```
+  pytest source
+```
 
-For coverage:
-  # cd source
-  # pytest --cov=canary 
-
+## For coverage:
+To produce coverage
+```
+  cd source
+  pytest --cov=canary
+```
